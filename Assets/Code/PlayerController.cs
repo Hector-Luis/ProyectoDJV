@@ -14,12 +14,16 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb2d;
     private Animator animator;
     private bool salto;
+    private bool ataque;
+    private float tiempo_ataque = 0.0f;
+    
     // Start is called before the first frame update
     void Start()
     {
         rb2d = this.GetComponent<Rigidbody2D>();
         animator = this.GetComponent<Animator>();
         toca_suelo = true;
+        ataque = false;
     }
 
     // Update is called once per frame
@@ -27,9 +31,33 @@ public class PlayerController : MonoBehaviour
     {
         animator.SetFloat("velocidad", Mathf.Abs(rb2d.velocity.x));
         animator.SetBool("toca_suelo", toca_suelo);
+        
 
         if (Input.GetKeyDown(KeyCode.UpArrow) && toca_suelo){
             salto = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Z) )
+        {
+            tiempo_ataque = 6.0f;
+            animator.SetFloat("tiempo_ataque", Mathf.Abs(tiempo_ataque));
+            ataque = true;
+            animator.SetBool("ataque", ataque);
+            Debug.Log("empieza ataque");
+        }
+        if (tiempo_ataque > 0.1f) {
+            ataque = true;
+            animator.SetFloat("tiempo_ataque", Mathf.Abs(tiempo_ataque));            
+            tiempo_ataque -= 1.0f;
+            Debug.Log("estan aqui 2 - tiempo: "+ tiempo_ataque);
+        }
+        else
+        {
+            ataque = false;
+            animator.SetBool("ataque", ataque);
+            animator.SetFloat("tiempo_ataque", Mathf.Abs(tiempo_ataque));
+            Debug.Log("termina ataque");
+            
         }
 
         //Invoke("Lanzar_kunai", t_kunai);
@@ -53,11 +81,21 @@ public class PlayerController : MonoBehaviour
             rb2d.AddForce(Vector2.up * fuerza_salto, ForceMode2D.Impulse);
             salto = false;
         }
+        if (ataque)
+        {
+            //animator.SetBool("ataque", true);
+            //animator.SetTrigger("ataque");                
+            Debug.Log("atacando");
+            //ataque = false;
+        }
+        else { //animator.SetTrigger("descanso"); 
+        }
+
     }
 
     void OnCollisionStay2D(Collision2D col){
         if (col.gameObject.tag == "suelo"){
-            toca_suelo = true;
+            toca_suelo = true;            
         }
         if (col.gameObject.tag == "kunai")
         {
