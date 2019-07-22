@@ -16,7 +16,8 @@ public class PlayerController : MonoBehaviour
     private bool salto;
     private bool ataque;
     private float tiempo_ataque = 0.0f;
-    
+    private float vitalidad = 0.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour
         animator = this.GetComponent<Animator>();
         toca_suelo = true;
         ataque = false;
+        vitalidad = 3.0f;
     }
 
     // Update is called once per frame
@@ -31,7 +33,7 @@ public class PlayerController : MonoBehaviour
     {
         animator.SetFloat("velocidad", Mathf.Abs(rb2d.velocity.x));
         animator.SetBool("toca_suelo", toca_suelo);
-        
+        animator.SetFloat("vitalidad", vitalidad);
 
         if (Input.GetKeyDown(KeyCode.UpArrow) && toca_suelo){
             salto = true;
@@ -99,7 +101,8 @@ public class PlayerController : MonoBehaviour
         }
         if (col.gameObject.tag == "kunai")
         {
-            this.transform.position = new Vector3(0, 6, 0);
+            vitalidad -= 1.0f;
+            //this.transform.position = new Vector3(0, 6, 0);
         }
     }
     void OnCollisionExit2D(Collision2D col)

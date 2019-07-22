@@ -24,6 +24,14 @@ public class KunaiController : MonoBehaviour
         rb2d.velocity = new Vector2(limit_speed * -1f, rb2d.velocity.y);
     }
 
+    void OnCollisionStay2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            this.transform.position = inicio;
+        }
+    }
+
     void OnBecameInvisible()
     {
         this.transform.position = inicio;
