@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PlayerFollower : MonoBehaviour
 {
-    
-    public GameObject player;
-    public Vector2 min_cam, max_cam;
-   
 
+    //public GameObject player;
+    //public Vector2 min_cam, max_cam;
+    public Transform player;
+    public float separacion = 7.46f;
     private void Awake()
     {
         
@@ -20,8 +20,14 @@ public class PlayerFollower : MonoBehaviour
        
     }
 
+
+
+    void Update()
+    {
+        transform.position = new Vector3(player.position.x+separacion, transform.position.y, transform.position.z);    
+    }
     // Update is called once per frame
-    void FixedUpdate()
+    /*void FixedUpdate()
     {
        
         float pos_x = player.transform.position.x;
@@ -30,5 +36,5 @@ public class PlayerFollower : MonoBehaviour
         this.transform.position = new Vector3(Mathf.Clamp(pos_x, min_cam.x, max_cam.x),
             Mathf.Clamp(pos_y, min_cam.y, max_cam.y), transform.position.z);
     
-    }
+    }*/
 }
