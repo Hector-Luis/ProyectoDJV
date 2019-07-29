@@ -103,8 +103,15 @@ public class PlayerController : MonoBehaviour
         }
         if (col.gameObject.tag == "kunai")
         {
-            vitalidad -= 1.0f;
-            vidas.actualiza_vida(int.Parse(vitalidad+""));            
+            if (ataque)
+            {
+                col.gameObject.GetComponent<KunaiController>().reset();
+            }
+            else
+            {
+                vitalidad -= 1.0f;
+                vidas.actualiza_vida(int.Parse(vitalidad + ""));
+            }
         }
         if (col.gameObject.tag == "botiquin")
         {

@@ -36,4 +36,8 @@ public class KunaiController : MonoBehaviour
     {
         this.transform.position = inicio;
     }
+
+    public void reset() {
+        this.transform.position = inicio;
+    }
 }
