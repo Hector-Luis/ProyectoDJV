@@ -6,7 +6,7 @@ public class PlayerFollower : MonoBehaviour
 {
 
     //public GameObject player;
-    //public Vector2 min_cam, max_cam;
+    public Vector2 min_cam, max_cam;
     public Transform player;
     public float separacion = 7.46f;
     private void Awake()
@@ -27,7 +27,7 @@ public class PlayerFollower : MonoBehaviour
         transform.position = new Vector3(player.position.x+separacion, transform.position.y, transform.position.z);    
     }
     // Update is called once per frame
-    /*void FixedUpdate()
+   /* void FixedUpdate()
     {
        
         float pos_x = player.transform.position.x;

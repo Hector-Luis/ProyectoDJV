@@ -104,8 +104,13 @@ public class PlayerController : MonoBehaviour
         if (col.gameObject.tag == "kunai")
         {
             vitalidad -= 1.0f;
-            vidas.actualiza_vida(int.Parse(vitalidad+""));
-            //this.transform.position = new Vector3(0, 6, 0);
+            vidas.actualiza_vida(int.Parse(vitalidad+""));            
+        }
+        if (col.gameObject.tag == "botiquin")
+        {
+            col.gameObject.SetActive(false);
+            vitalidad += 1.0f;
+            vidas.actualiza_vida(int.Parse(vitalidad + ""));           
         }
     }
     void OnCollisionExit2D(Collision2D col)
@@ -117,7 +122,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void OnBecameInvisible(){
-        this.transform.position = new Vector3(0, 6, 0);
+        //this.transform.position = new Vector3(0, 6, 0);
     }
 
     /*void Lanzar_kunai() {
