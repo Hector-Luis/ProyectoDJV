@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public float fuerza_salto = 8.0f;
     public float t_kunai = 2f;
     public Transform trans;
+    public Vidas vidas;
     private Rigidbody2D rb2d;
     private Animator animator;
     private bool salto;
@@ -23,6 +24,7 @@ public class PlayerController : MonoBehaviour
     {
         rb2d = this.GetComponent<Rigidbody2D>();
         animator = this.GetComponent<Animator>();
+        vidas = GameObject.FindObjectOfType<Vidas>();
         toca_suelo = true;
         ataque = false;
         vitalidad = 3.0f;
@@ -102,6 +104,7 @@ public class PlayerController : MonoBehaviour
         if (col.gameObject.tag == "kunai")
         {
             vitalidad -= 1.0f;
+            vidas.actualiza_vida(int.Parse(vitalidad+""));
             //this.transform.position = new Vector3(0, 6, 0);
         }
     }
