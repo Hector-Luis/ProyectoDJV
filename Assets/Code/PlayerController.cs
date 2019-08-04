@@ -35,36 +35,38 @@ public class PlayerController : MonoBehaviour
     {
         animator.SetFloat("velocidad", Mathf.Abs(rb2d.velocity.x));
         animator.SetBool("toca_suelo", toca_suelo);
+        animator.SetBool("ataque", ataque);
+        animator.SetFloat("tiempo_ataque", Mathf.Abs(tiempo_ataque));
         animator.SetFloat("vitalidad", vitalidad);
-
+        //tiempo_ataque -= 1.0f;
+       
         if (Input.GetKeyDown(KeyCode.UpArrow) && toca_suelo){
             salto = true;
         }
 
         if (Input.GetKeyDown(KeyCode.Z) )
         {
+            tiempo_ataque = 0.0f;
+            Debug.Log("empieza ataque nuevo");
             tiempo_ataque = 6.0f;
             animator.SetFloat("tiempo_ataque", Mathf.Abs(tiempo_ataque));
-            ataque = true;
-            animator.SetBool("ataque", ataque);
-            Debug.Log("empieza ataque");
+            ataque = true;           
         }
         if (tiempo_ataque > 0.1f) {
             ataque = true;
-            animator.SetFloat("tiempo_ataque", Mathf.Abs(tiempo_ataque));            
+            //animator.SetFloat("tiempo_ataque", Mathf.Abs(tiempo_ataque));            
             tiempo_ataque -= 1.0f;
             Debug.Log("estan aqui 2 - tiempo: "+ tiempo_ataque);
         }
         else
         {
             ataque = false;
-            animator.SetBool("ataque", ataque);
-            animator.SetFloat("tiempo_ataque", Mathf.Abs(tiempo_ataque));
-            Debug.Log("termina ataque");
-            
+            //animator.SetBool("ataque", ataque);
+            //animator.SetFloat("tiempo_ataque", Mathf.Abs(tiempo_ataque));
+            //Debug.Log("termina ataque");            
         }
 
-        //Invoke("Lanzar_kunai", t_kunai);
+       
     }
 
     void FixedUpdate() {
@@ -85,15 +87,12 @@ public class PlayerController : MonoBehaviour
             rb2d.AddForce(Vector2.up * fuerza_salto, ForceMode2D.Impulse);
             salto = false;
         }
-        if (ataque)
-        {
-            //animator.SetBool("ataque", true);
-            //animator.SetTrigger("ataque");                
+        /*if (ataque)
+        {               
             Debug.Log("atacando");
-            //ataque = false;
         }
-        else { //animator.SetTrigger("descanso"); 
-        }
+        else {
+        }*/
 
     }
 
@@ -129,7 +128,8 @@ public class PlayerController : MonoBehaviour
     }
 
     void OnBecameInvisible(){
-        //this.transform.position = new Vector3(0, 6, 0);
+        this.transform.position = new Vector3(0, 6, 0);
+        vitalidad -= 1.0f;
     }
 
     /*void Lanzar_kunai() {
