@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     private bool ataque;
     private float tiempo_ataque = 0.0f;
     private float vitalidad = 0.0f;
+    public AudioClip espada_aire, espada_choque, auch;
+    AudioSource sonido;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +27,7 @@ public class PlayerController : MonoBehaviour
         rb2d = this.GetComponent<Rigidbody2D>();
         animator = this.GetComponent<Animator>();
         vidas = GameObject.FindObjectOfType<Vidas>();
+        sonido = gameObject.GetComponent<AudioSource>();
         toca_suelo = true;
         ataque = false;
         vitalidad = 3.0f;
@@ -87,12 +90,14 @@ public class PlayerController : MonoBehaviour
             rb2d.AddForce(Vector2.up * fuerza_salto, ForceMode2D.Impulse);
             salto = false;
         }
-        /*if (ataque)
-        {               
-            Debug.Log("atacando");
+        if (ataque)
+        {
+            //Debug.Log("atacando");
+            //sonido.clip = espada_aire;
+            //sonido.Play();
         }
         else {
-        }*/
+        }
 
     }
 
@@ -100,14 +105,28 @@ public class PlayerController : MonoBehaviour
         if (col.gameObject.tag == "suelo"){
             toca_suelo = true;            
         }
-        if (col.gameObject.tag == "kunai")
+        if (col.gameObject.tag == "kunai" || col.gameObject.tag == "shuriken")
         {
+            //sonido.Stop();
             if (ataque)
             {
-                col.gameObject.GetComponent<KunaiController>().reset();
+                //
+                sonido.clip = espada_choque;
+                sonido.Play();
+                if (col.gameObject.tag == "kunai")
+                {
+                    col.gameObject.GetComponent<KunaiController>().reset();
+                }
+                if (col.gameObject.tag == "shuriken")
+                {
+                    col.gameObject.GetComponent<ShurikenController>().reset();
+                }
+                Debug.Log("sonido: " + sonido.clip);               
             }
             else
             {
+                sonido.clip = auch;
+                sonido.Play();
                 vitalidad -= 1.0f;
                 vidas.actualiza_vida(int.Parse(vitalidad + ""));
             }

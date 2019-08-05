@@ -33,7 +33,7 @@ public class PlayerFollower : MonoBehaviour
         {
             transform.position = new Vector3(player.position.x + separacion, transform.position.y, transform.position.z);
         }
-        Debug.Log("posicion jugador es: " + player.position.y);
+        //Debug.Log("posicion jugador es: " + player.position.y);
     }
     // Update is called once per frame
    /* void FixedUpdate()

@@ -48,4 +48,8 @@ public class ShurikenController : MonoBehaviour
     {
         this.transform.position = inicio;
     }
+    public void reset()
+    {
+        this.transform.position = inicio;
+    }
 }
