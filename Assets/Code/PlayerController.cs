@@ -7,17 +7,32 @@ public class PlayerController : MonoBehaviour
     public KunaiController kunai;
     public float speed = 2f;
     public float max_speed = 5f;
-    public bool toca_suelo;
-    public float fuerza_salto = 8.0f;
-    public float t_kunai = 2f;
-    public Transform trans;
-    public Vidas vidas;
+
+
+    public bool toca_suelo; 
+    public Transform trans; //comprobador del suelo
+    public float fuerza_salto = 8.0f; //fuerza del salto
+    //float comprobadorRadio = 0.07f;
+   // public LayerMask mascaraSuelo; //para poder etiquetar los objetos del suelo
+
+    public float t_kunai = 2f; //kunai que???
+    
+    public Vidas vidas; //variable vidas
+
     private Rigidbody2D rb2d;
-    private Animator animator;
+
+    private Animator animator;//combocar animador
+
     private bool salto;
+
     private bool ataque;
+
     private float tiempo_ataque = 0.0f;
+
     private float vitalidad = 0.0f;
+
+    ///variable para correr
+    private bool corriendo = false;
 
     // Start is called before the first frame update
     void Start()
@@ -37,10 +52,25 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("toca_suelo", toca_suelo);
         animator.SetFloat("vitalidad", vitalidad);
 
-        if (Input.GetKeyDown(KeyCode.UpArrow) && toca_suelo){
-            salto = true;
+        // if (Input.GetKeyDown(KeyCode.UpArrow) && toca_suelo){
+        if (Input.GetMouseButtonDown(0) && toca_suelo) { //al hacer click empieza todos los movimientos
+            if (corriendo)
+            {
+                salto = true;
+
+            }
+            else { corriendo = true; NotificationCenter.DefaultCenter().PostNotification(this, "PersonajeEmpiezaACorrer"); } //funcion notificacion para que el personaje empiese a correr
         }
 
+        //if(Input.GetMouseButtonDown(0)&& toca_suelo)
+           // if (Input.GetMouseButtonDown(0)){
+           // rb2d.AddForce(new Vector2(0, fuerza_salto));
+
+       // }
+            
+               // NotificationCenter.DefaultCenter().PostNotification(this, "PersonajeEmpiezaACorrer");            
+
+        ///ataque con z espada/////////////////////
         if (Input.GetKeyDown(KeyCode.Z) )
         {
             tiempo_ataque = 6.0f;
@@ -63,28 +93,41 @@ public class PlayerController : MonoBehaviour
             Debug.Log("termina ataque");
             
         }
-
+        ////////////
         //Invoke("Lanzar_kunai", t_kunai);
     }
 
     void FixedUpdate() {
-        float h = Input.GetAxis("Horizontal");
-        rb2d.AddForce(Vector2.right * speed * h);
+
+        //toca_suelo = Physics2D.OverlapCircle(trans.position, comprobadorRadio, mascaraSuelo);
+
+        if (corriendo)
+        {
+            rb2d.velocity = new Vector2(speed, rb2d.velocity.y);
+        }
+
+        //float h = Input.GetAxis("Horizontal");
+        //rb2d.AddForce(Vector2.right * speed * h);
        
         float limit_speed = Mathf.Clamp(rb2d.velocity.x, -max_speed, max_speed);
         rb2d.velocity = new Vector2(limit_speed, rb2d.velocity.y);
+      
 
-        if (h > 0.1f){
+        /*if (h > 0.1f){
             this.transform.localScale = new Vector3(1f, 1f ,1f);
+            NotificationCenter.DefaultCenter().PostNotification(this, "PersonajeEmpiezaACorrer");
         }
         if (h < -0.1f)
         {
             this.transform.localScale = new Vector3(-1f, 1f, 1f);
-        }
+
+        }*/
         if (salto) {
             rb2d.AddForce(Vector2.up * fuerza_salto, ForceMode2D.Impulse);
             salto = false;
         }
+
+        //ataque
         if (ataque)
         {
             //animator.SetBool("ataque", true);

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 721773765333047243}
   - component: {fileID: 1800666579880655084}
   - component: {fileID: 7247205500043021655}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bloquepeque
   m_TagString: suelo
   m_Icon: {fileID: 0}

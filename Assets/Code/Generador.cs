@@ -6,13 +6,20 @@ public class Generador : MonoBehaviour
 {
 
     public GameObject[] obj;
-    public float tiempoMin = 1f; //segundo en que tarda de aparecer otro bloque
-    public float tiempoMax = 2f; //segundo en que varia el aparecer otro bloque
+    public float tiempoMin = 1.5f; //segundo en que tarda de aparecer otro bloque
+    public float tiempoMax = 4f; //segundo en que varia el aparecer otro bloque
     // Start is called before the first frame update
     void Start()
     {
-        Generar(); 
+        // Generar(); 
+        NotificationCenter.DefaultCenter().AddObserver(this, "PersonajeEmpiezaACorrer");//esta es la notificacion
     }
+
+    void PersonajeEmpiezaACorrer(Notification notification)
+    {
+        Generar();
+    }
+
 
     // Update is called once per frame
     void Update()
