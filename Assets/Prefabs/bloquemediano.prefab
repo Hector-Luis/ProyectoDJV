@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 3039672794255038708}
   - component: {fileID: 2430364292422876051}
   - component: {fileID: 6226024402679451701}
-  m_Layer: 8
+  - component: {fileID: 1444258627}
+  m_Layer: 0
   m_Name: bloquemediano
   m_TagString: suelo
   m_Icon: {fileID: 0}
@@ -107,3 +108,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.47, y: 0.67}
   m_EdgeRadius: 0
+--- !u!114 &1444258627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6177617553887499053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faad94b5c1856664ea9ba6de2dec4999, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  puntosIncrementar: 1

@@ -63,8 +63,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Code\AspectUtility.cs" />
+    <Compile Include="Assets\Code\Bloque.cs" />
     <Compile Include="Assets\Code\Destroller.cs" />
     <Compile Include="Assets\Code\Generador.cs" />
+    <Compile Include="Assets\Code\ItemFruta.cs" />
     <Compile Include="Assets\Code\KunaiController.cs" />
     <Compile Include="Assets\Code\NotificationCenter.cs" />
     <Compile Include="Assets\Code\Nube.cs" />
