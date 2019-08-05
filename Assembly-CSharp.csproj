@@ -63,12 +63,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Code\AspectUtility.cs" />
+    <Compile Include="Assets\Code\Destroller.cs" />
     <Compile Include="Assets\Code\Generador.cs" />
     <Compile Include="Assets\Code\KunaiController.cs" />
     <Compile Include="Assets\Code\NotificationCenter.cs" />
     <Compile Include="Assets\Code\Nube.cs" />
     <Compile Include="Assets\Code\PlayerController.cs" />
     <Compile Include="Assets\Code\PlayerFollower.cs" />
+    <Compile Include="Assets\Code\Puntos.cs" />
     <Compile Include="Assets\Code\ShurikenController.cs" />
     <Compile Include="Assets\Code\Vidas.cs" />
     <Reference Include="Unity.Timeline.Editor">
