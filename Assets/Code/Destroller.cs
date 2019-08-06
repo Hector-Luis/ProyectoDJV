@@ -18,10 +18,14 @@ public class Destroller : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Player")
+        if (collision.tag == "Player")
         {
-            Debug.Break();
+            // Debug.Break();
             //funcion game over
+            NotificationCenter.DefaultCenter().PostNotification(this, "PersonajeHaMuerto");
+            GameObject personaje = GameObject.Find("Player");
+            // Destroy(personaje);
+            personaje.SetActive(false);
         }
         else {
             Destroy(collision.gameObject); //destruye los objetos colisionados 

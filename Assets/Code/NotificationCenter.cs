@@ -97,6 +97,11 @@ public class NotificationCenter : MonoBehaviour
 	        notifyList.Remove(observer);
 	    }
 	}
+
+    internal void PostNotification(string v)
+    {
+        throw new NotImplementedException();
+    }
 }
  
 // The Notification class is the object that is sent to receiving objects of a notification type.

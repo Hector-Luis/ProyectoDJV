@@ -73,6 +73,7 @@
     <Compile Include="Assets\Code\PlayerController.cs" />
     <Compile Include="Assets\Code\PlayerFollower.cs" />
     <Compile Include="Assets\Code\Puntos.cs" />
+    <Compile Include="Assets\Code\Scroll.cs" />
     <Compile Include="Assets\Code\ShurikenController.cs" />
     <Compile Include="Assets\Code\Vidas.cs" />
     <Reference Include="Unity.Timeline.Editor">
