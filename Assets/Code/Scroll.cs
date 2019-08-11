@@ -5,6 +5,7 @@ using UnityEngine;
 public class Scroll : MonoBehaviour
 {
     // Start is called before the first frame update
+    public bool InicarEnMovimiento = false;
     public float velocidad = 0f;
     private bool enMovimiento = false;
     private float tiempoInicio = 0f;
@@ -12,6 +13,12 @@ public class Scroll : MonoBehaviour
     {
         NotificationCenter.DefaultCenter().AddObserver(this, "PersonajeEmpiezaACorrer");
         NotificationCenter.DefaultCenter().AddObserver(this, "PersonajeHaMuerto");
+
+        if (InicarEnMovimiento)
+        {
+            // enMovimiento = true;
+            PersonajeEmpiezaACorrer();
+        }
     }
 
     void PersonajeHaMuerto()
