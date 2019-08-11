@@ -11,9 +11,26 @@ public class Puntos : MonoBehaviour
     void Start()
     {
         NotificationCenter.DefaultCenter().AddObserver(this, "IncrementarPuntos");
+        NotificationCenter.DefaultCenter().AddObserver(this, "PersonajeHaMuerto");
+
         ActualizarMarcador();
     }
 
+
+
+    void PersonajeHaMuerto(Notification notification)
+    {
+        if(puntos > Estadogame.estadogame.puntuacionMaxima)
+        {
+          //  Debug.Log("Puntucion maxima alcanzada su puntuacion fue: " + Estadogame.estadogame.puntuacionMaxima + " Actual " + puntos);
+            Estadogame.estadogame.puntuacionMaxima = puntos;
+            Estadogame.estadogame.Guardar();
+        }
+        /*else
+        {
+            Debug.Log("Record No superado: " + Estadogame.estadogame.puntuacionMaxima + " Actual " + puntos);
+        }*/
+    }
     void IncrementarPuntos(Notification notification)
     {
         int puntosAIncrementar = (int)notification.data;
