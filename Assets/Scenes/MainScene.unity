@@ -427,7 +427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4781d61de0b61a46a79ccf069de24fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wantedAspectRatio: 1.777777
+  _wantedAspectRatio: 1.777778
 --- !u!1 &1271466928
 GameObject:
   m_ObjectHideFlags: 0

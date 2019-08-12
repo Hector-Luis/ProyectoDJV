@@ -20,6 +20,8 @@ public class BotonJugar : MonoBehaviour
     void OnMouseDown()
     {
         //Debug.Log("click");
-        Application.LoadLevel ("GameScene");//paa cambiar de ecena revisar porque esta deprecado
+        Application.LoadLevel ("GameScene");//paa cambiar de ecena revisar porque esta deprecado]\
+
+
     }
 }
