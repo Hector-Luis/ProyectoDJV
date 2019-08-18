@@ -8,6 +8,7 @@ TagManager:
   - kunai
   - shuriken
   - botiquin
+  - arma_enemiga
   layers:
   - Default
   - TransparentFX

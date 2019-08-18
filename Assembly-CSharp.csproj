@@ -64,6 +64,7 @@
     <Compile Include="Assets\Code\PlayerController.cs" />
     <Compile Include="Assets\Code\PlayerFollower.cs" />
     <Compile Include="Assets\Code\ShurikenController.cs" />
+    <Compile Include="Assets\Code\Timer.cs" />
     <Compile Include="Assets\Code\Vidas.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/HECTOR-2019/JUEGOS DE VIDEO/PROYECTO/ProyectoDJV/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
