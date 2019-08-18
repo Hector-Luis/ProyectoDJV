@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public KunaiController kunai;
-    public float speed = 2f;
+    public float walkingSpeed = 6f;
     public float max_speed = 5f;
     public bool toca_suelo;
     public float fuerza_salto = 8.0f;
@@ -42,7 +42,37 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("tiempo_ataque", Mathf.Abs(tiempo_ataque));
         animator.SetFloat("vitalidad", vitalidad);
         //tiempo_ataque -= 1.0f;
-       
+        { // x-axis movement
+            var v = rb2d.velocity;
+            var speed = 0f;
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                speed += -walkingSpeed;
+                rb2d.AddForce(Vector2.right * speed);
+            }
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                speed += walkingSpeed;
+                rb2d.AddForce(Vector2.right * speed);
+            }
+            v.x = speed;
+            rb2d.velocity = v;
+
+            if (v.x > 0.1f)
+            {
+                this.transform.localScale = new Vector3(1f, 1f, 1f);
+            }
+            if (v.x < -0.1f)
+            {
+                this.transform.localScale = new Vector3(-1f, 1f, 1f);
+            }
+        }
+        if (salto)
+        {
+            rb2d.AddForce(Vector2.up * fuerza_salto, ForceMode2D.Impulse);
+            salto = false;
+        }
+
         if (Input.GetKeyDown(KeyCode.UpArrow) && toca_suelo){
             salto = true;
         }
@@ -51,53 +81,24 @@ public class PlayerController : MonoBehaviour
         {
             tiempo_ataque = 0.0f;
             Debug.Log("empieza ataque nuevo");
-            tiempo_ataque = 6.0f;
+            tiempo_ataque = 48.0f;
             animator.SetFloat("tiempo_ataque", Mathf.Abs(tiempo_ataque));
             ataque = true;           
         }
-        if (tiempo_ataque > 0.1f) {
+
+        if (tiempo_ataque > 0.1f)
+        {
             ataque = true;
             //animator.SetFloat("tiempo_ataque", Mathf.Abs(tiempo_ataque));            
             tiempo_ataque -= 1.0f;
-            Debug.Log("estan aqui 2 - tiempo: "+ tiempo_ataque);
+            Debug.Log("estan aqui 2 - tiempo: " + tiempo_ataque);
         }
         else
         {
             ataque = false;
-            //animator.SetBool("ataque", ataque);
-            //animator.SetFloat("tiempo_ataque", Mathf.Abs(tiempo_ataque));
-            //Debug.Log("termina ataque");            
         }
 
-       
-    }
 
-    void FixedUpdate() {
-        float h = Input.GetAxis("Horizontal");
-        rb2d.AddForce(Vector2.right * speed * h);
-       
-        float limit_speed = Mathf.Clamp(rb2d.velocity.x, -max_speed, max_speed);
-        rb2d.velocity = new Vector2(limit_speed, rb2d.velocity.y);
-
-        if (h > 0.1f){
-            this.transform.localScale = new Vector3(1f, 1f ,1f);
-        }
-        if (h < -0.1f)
-        {
-            this.transform.localScale = new Vector3(-1f, 1f, 1f);
-        }
-        if (salto) {
-            rb2d.AddForce(Vector2.up * fuerza_salto, ForceMode2D.Impulse);
-            salto = false;
-        }
-        if (ataque)
-        {
-            //Debug.Log("atacando");
-            //sonido.clip = espada_aire;
-            //sonido.Play();
-        }
-        else {
-        }
 
     }
 
@@ -121,14 +122,24 @@ public class PlayerController : MonoBehaviour
                 {
                     col.gameObject.GetComponent<ShurikenController>().reset();
                 }
-                Debug.Log("sonido: " + sonido.clip);               
+                Debug.Log("sonido: " + sonido.clip);
+                ataque = false;
             }
             else
             {
                 sonido.clip = auch;
                 sonido.Play();
                 vitalidad -= 1.0f;
-                vidas.actualiza_vida(int.Parse(vitalidad + ""));
+                
+                if (vitalidad < 0.1f) {
+                    vitalidad = 0.0f;
+                    vidas.actualiza_vida(int.Parse(vitalidad + ""));
+                    //llamar a game over
+                }
+                else
+                {
+                    vidas.actualiza_vida(int.Parse(vitalidad + ""));
+                }
             }
         }
         if (col.gameObject.tag == "botiquin")

@@ -6,8 +6,8 @@ public class Generador : MonoBehaviour
 {
 
     public GameObject[] obj;
-    public float tiempoMin = 1f; //segundo en que tarda de aparecer otro bloque
-    public float tiempoMax = 2f; //segundo en que varia el aparecer otro bloque
+    public float tiempoMin = 2f; //segundo en que tarda de aparecer otro bloque
+    public float tiempoMax = 5f; //segundo en que varia el aparecer otro bloque
     // Start is called before the first frame update
     void Start()
     {
