@@ -8,11 +8,14 @@ public class KunaiController : MonoBehaviour
     public float max_speed = 3f;
     private Vector3 inicio;
     private Rigidbody2D rb2d;
+    public AudioClip choque_armas;
+    AudioSource sonido;
     // Start is called before the first frame update
     void Start()
     {
         rb2d = this.GetComponent<Rigidbody2D>();
         inicio = this.transform.position;
+        sonido.clip = choque_armas;       
     }
 
     // Update is called once per frame
@@ -26,18 +29,26 @@ public class KunaiController : MonoBehaviour
 
     void OnCollisionStay2D(Collision2D col)
     {
+        Debug.Log("Colision con : " + col.gameObject.tag);
         if (col.gameObject.tag == "Player")
         {
-            this.transform.position = inicio;
+            Destroy(gameObject);
+        }       
+        if (col.gameObject.tag == "kunai_player")
+        {
+            Debug.Log("CHOQUE DE KUNAIS");          
+            Destroy(gameObject);
+            Destroy(col.gameObject);
+            sonido.Play();
         }
     }
 
     void OnBecameInvisible()
     {
-        this.transform.position = inicio;
+        Destroy(gameObject);        
     }
 
-    public void reset() {
+    /*public void reset() {
         this.transform.position = inicio;
-    }
+    }*/
 }

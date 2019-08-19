@@ -60,6 +60,8 @@
     <Compile Include="Assets\Code\AspectUtility.cs" />
     <Compile Include="Assets\Code\Generador.cs" />
     <Compile Include="Assets\Code\KunaiController.cs" />
+    <Compile Include="Assets\Code\KunaiPlayer.cs" />
+    <Compile Include="Assets\Code\LanzarKunai.cs" />
     <Compile Include="Assets\Code\Nube.cs" />
     <Compile Include="Assets\Code\PlayerController.cs" />
     <Compile Include="Assets\Code\PlayerFollower.cs" />

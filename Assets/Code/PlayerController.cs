@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public KunaiController kunai;
+    //public KunaiController kunai;
     public float walkingSpeed = 6f;
     public float max_speed = 5f;
     public bool toca_suelo;
@@ -80,9 +80,9 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z) )
         {
             tiempo_ataque = 0.0f;
-            Debug.Log("empieza ataque nuevo");
+            //Debug.Log("empieza ataque nuevo");
             tiempo_ataque = 48.0f;
-            animator.SetFloat("tiempo_ataque", Mathf.Abs(tiempo_ataque));
+            //animator.SetFloat("tiempo_ataque", Mathf.Abs(tiempo_ataque));
             ataque = true;           
         }
 
@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
             ataque = true;
             //animator.SetFloat("tiempo_ataque", Mathf.Abs(tiempo_ataque));            
             tiempo_ataque -= 1.0f;
-            Debug.Log("estan aqui 2 - tiempo: " + tiempo_ataque);
+            //Debug.Log("estan aqui 2 - tiempo: " + tiempo_ataque);
         }
         else
         {
@@ -103,26 +103,18 @@ public class PlayerController : MonoBehaviour
     }
 
     void OnCollisionStay2D(Collision2D col){
+        //Debug.Log("Colision con : " + col.gameObject.tag);
         if (col.gameObject.tag == "suelo"){
             toca_suelo = true;            
         }
-        if (col.gameObject.tag == "kunai" || col.gameObject.tag == "shuriken")
+
+        if (col.gameObject.tag == "arma_enemiga")
         {
             //sonido.Stop();
             if (ataque)
             {
-                //
                 sonido.clip = espada_choque;
-                sonido.Play();
-                if (col.gameObject.tag == "kunai")
-                {
-                    col.gameObject.GetComponent<KunaiController>().reset();
-                }
-                if (col.gameObject.tag == "shuriken")
-                {
-                    col.gameObject.GetComponent<ShurikenController>().reset();
-                }
-                Debug.Log("sonido: " + sonido.clip);
+                sonido.Play();                                
                 ataque = false;
             }
             else
