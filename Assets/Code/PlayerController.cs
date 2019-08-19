@@ -144,7 +144,7 @@ public class PlayerController : MonoBehaviour
                 //
                 sonido.clip = espada_choque;
                 sonido.Play();
-                if (col.gameObject.tag == "kunai")
+                /*if (col.gameObject.tag == "kunai")
                 {
                     col.gameObject.GetComponent<KunaiController>().reset();
                 }
@@ -152,7 +152,7 @@ public class PlayerController : MonoBehaviour
                 {
                     col.gameObject.GetComponent<ShurikenController>().reset();
                 }
-                Debug.Log("sonido: " + sonido.clip);
+                Debug.Log("sonido: " + sonido.clip);*/
                 ataque = false;
             }
             else
