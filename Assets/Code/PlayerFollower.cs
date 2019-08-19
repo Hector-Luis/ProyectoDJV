@@ -24,7 +24,6 @@ public class PlayerFollower : MonoBehaviour
 
     void Update()
     {
-<<<<<<< HEAD
         //transform.position = new Vector3(player.position.x, player.position.y, transform.position.z);
         if (player.position.y > 3.0f)
         {
@@ -36,9 +35,6 @@ public class PlayerFollower : MonoBehaviour
             transform.position = new Vector3(player.position.x + separacion, transform.position.y, transform.position.z);
         }
         //Debug.Log("posicion jugador es: " + player.position.y);
-=======
-        transform.position = new Vector3(player.position.x+separacion, transform.position.y, transform.position.z);    
->>>>>>> 5df43cca51270d9e06d8b0955e7e2dd3628bf199
     }
     // Update is called once per frame
     /*void FixedUpdate()

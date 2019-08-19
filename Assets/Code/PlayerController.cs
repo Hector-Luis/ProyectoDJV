@@ -21,17 +21,9 @@ public class PlayerController : MonoBehaviour
     public AudioClip espada_aire, espada_choque, auch;
     AudioSource sonido;
 
-
-    ///variable para correr
-    private bool corriendo = false;
-
-
     // Start is called before the first frame update
     void Start()
     {
-        NotificationCenter.DefaultCenter().AddObserver(this, "PersonajeHaMuerto");
-
-
         rb2d = this.GetComponent<Rigidbody2D>();
         animator = this.GetComponent<Animator>();
         vidas = GameObject.FindObjectOfType<Vidas>();
@@ -50,27 +42,6 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("tiempo_ataque", Mathf.Abs(tiempo_ataque));
         animator.SetFloat("vitalidad", vitalidad);
         //tiempo_ataque -= 1.0f;
-
-
-
-
-
-
-        if (Input.GetKeyDown(KeyCode.RightArrow) && toca_suelo)
-        {
-            if (corriendo)
-            {
-               // salto = true;
-
-
-            }
-            else { corriendo = true; NotificationCenter.DefaultCenter().PostNotification(this, "PersonajeEmpiezaACorrer"); } //funcion notificacion para que el personaje empiese a correr
-        }
-
-
-
-
-
         { // x-axis movement
             var v = rb2d.velocity;
             var speed = 0f;
@@ -78,7 +49,6 @@ public class PlayerController : MonoBehaviour
             {
                 speed += -walkingSpeed;
                 rb2d.AddForce(Vector2.right * speed);
-
             }
             if (Input.GetKey(KeyCode.RightArrow))
             {
@@ -157,12 +127,6 @@ public class PlayerController : MonoBehaviour
                     vitalidad = 0.0f;
                     vidas.actualiza_vida(int.Parse(vitalidad + ""));
                     //llamar a game over
-
-
-                    NotificationCenter.DefaultCenter().PostNotification(this, "PersonajeHaMuerto");
-                    GameObject personaje = GameObject.Find("Player");
-                    personaje.SetActive(false);
-
                 }
                 else
                 {
@@ -185,7 +149,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-  /*  void OnBecameInvisible(){
+    void OnBecameInvisible(){
         this.transform.position = new Vector3(0, 6, 0);
         vitalidad -= 1.0f;
     }

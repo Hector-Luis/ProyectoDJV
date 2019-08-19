@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 2438591495873527476}
   - component: {fileID: 4345610208783308469}
   - component: {fileID: 7452868192494951333}
-  - component: {fileID: 560035078506673657}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: bloquelargo
   m_TagString: suelo
   m_Icon: {fileID: 0}
@@ -108,16 +107,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 8.24, y: 0.67}
   m_EdgeRadius: 0
---- !u!114 &560035078506673657
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1204555480459013042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: faad94b5c1856664ea9ba6de2dec4999, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  puntosIncrementar: 1
