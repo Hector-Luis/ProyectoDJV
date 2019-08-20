@@ -26,7 +26,7 @@ public class KunaiPlayer : MonoBehaviour
         {
             Debug.Log("CHOQUE DE KUNAIS player");
             Destroy(gameObject);
-            //Destroy(col);
+           // Destroy(col.gameObject);
         }
     }
 

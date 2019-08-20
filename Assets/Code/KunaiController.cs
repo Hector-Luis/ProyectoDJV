@@ -15,7 +15,7 @@ public class KunaiController : MonoBehaviour
     {
         rb2d = this.GetComponent<Rigidbody2D>();
         inicio = this.transform.position;
-        sonido.clip = choque_armas;       
+        //sonido.clip = choque_armas;       
     }
 
     // Update is called once per frame
@@ -41,6 +41,10 @@ public class KunaiController : MonoBehaviour
             Destroy(col.gameObject);
             sonido.Play();
         }
+       /* if (col.gameObject != null)
+        {
+            Destroy(gameObject);
+        }*/
     }
 
     void OnBecameInvisible()

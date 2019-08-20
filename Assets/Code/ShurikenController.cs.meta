@@ -3,7 +3,8 @@ guid: 59ae7cdd75d28df46a4f44ded3b27e31
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - choque_armas: {fileID: 8300000, guid: 99c9635707857ca498d64afe94a9984c, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

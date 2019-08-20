@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7803310497486110960}
   - component: {fileID: 1646475808734416773}
   - component: {fileID: 8502274177743687710}
+  - component: {fileID: -564347681886760033}
   m_Layer: 0
   m_Name: pergamino
   m_TagString: Untagged
@@ -121,3 +122,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   puntosIncrementar: 5
+--- !u!114 &-564347681886760033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018639587451220325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46a45b2206ff77249a1ca4addd850a3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

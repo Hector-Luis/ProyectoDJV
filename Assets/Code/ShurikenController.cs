@@ -16,7 +16,7 @@ public class ShurikenController : MonoBehaviour
     {
         rb2d = this.GetComponent<Rigidbody2D>();
         inicio = this.transform.position;
-        sonido.clip = choque_armas;
+        //sonido.clip = choque_armas;
     }
 
     // Update is called once per frame
@@ -55,10 +55,10 @@ public class ShurikenController : MonoBehaviour
         }
     }
 
-    void OnBecameInvisible()
+   /* void OnBecameInvisible()
     {
         Destroy(gameObject);
-    }
+    }/*
     /*public void reset()
     {
         this.transform.position = inicio;

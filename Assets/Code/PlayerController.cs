@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public KunaiController kunai;
+    //public KunaiController kunai;
     public float walkingSpeed = 6f;
     public float max_speed = 5f;
     public bool toca_suelo;
@@ -136,7 +136,7 @@ public class PlayerController : MonoBehaviour
         if (col.gameObject.tag == "suelo"){
             toca_suelo = true;            
         }
-        if (col.gameObject.tag == "kunai" || col.gameObject.tag == "shuriken")
+        if (col.gameObject.tag == "arma_enemiga")
         {
             //sonido.Stop();
             if (ataque)
@@ -193,7 +193,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-  /*  void OnBecameInvisible(){
+   /* void OnBecameInvisible(){
         this.transform.position = new Vector3(0, 6, 0);
         vitalidad -= 1.0f;
     }
