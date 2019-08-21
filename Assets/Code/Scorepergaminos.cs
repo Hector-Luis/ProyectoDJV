@@ -27,7 +27,7 @@ public class Scorepergaminos : MonoBehaviour
         // suma al score el parametro que le llega del script pergamino un entere que aomula 1 unto si
         //el jugador hace una colision con el perfabs pergamino
         score += pergaValue;
-        text.text = "X" + score.ToString();
+        text.text = "X" + score.ToString() + "/10";
 
 
         /// if para cambiar de ecena segunel score de pergaminos

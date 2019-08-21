@@ -24,6 +24,7 @@ public class Destroller : MonoBehaviour
             //funcion game over
             NotificationCenter.DefaultCenter().PostNotification(this, "PersonajeHaMuerto");
             GameObject personaje = GameObject.Find("Player");
+            GameObject.Find("Image").SetActive(false);
             // Destroy(personaje);
             personaje.SetActive(false);
         }

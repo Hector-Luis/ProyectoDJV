@@ -158,6 +158,7 @@ public class PlayerController : MonoBehaviour
                     vidas.actualiza_vida(int.Parse(vitalidad + ""));                    
                     NotificationCenter.DefaultCenter().PostNotification(this, "PersonajeHaMuerto");
                     GameObject personaje = GameObject.Find("Player");
+                    GameObject.Find("Image").SetActive(false);
                     personaje.SetActive(false);
                 }
                 else
