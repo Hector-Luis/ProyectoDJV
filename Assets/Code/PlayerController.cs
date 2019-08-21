@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     //public KunaiController kunai;
+
+    public GameObject salidaKunai, KunaiPlayer;
+
     public float walkingSpeed = 6f;
     public float max_speed = 5f;
     public bool toca_suelo;
@@ -30,8 +33,10 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         NotificationCenter.DefaultCenter().AddObserver(this, "PersonajeHaMuerto");
-
-
+//
+        salidaKunai = GameObject.Find("salida_kunai");
+        KunaiPlayer = GameObject.Find("kunai_player");
+//
         rb2d = this.GetComponent<Rigidbody2D>();
         animator = this.GetComponent<Animator>();
         vidas = GameObject.FindObjectOfType<Vidas>();
@@ -51,25 +56,13 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("vitalidad", vitalidad);
         //tiempo_ataque -= 1.0f;
 
-
-
-
-
-
         if (Input.GetKeyDown(KeyCode.RightArrow) && toca_suelo)
         {
             if (corriendo)
             {
-               // salto = true;
-
-
             }
             else { corriendo = true; NotificationCenter.DefaultCenter().PostNotification(this, "PersonajeEmpiezaACorrer"); } //funcion notificacion para que el personaje empiese a correr
         }
-
-
-
-
 
         { // x-axis movement
             var v = rb2d.velocity;
@@ -78,7 +71,6 @@ public class PlayerController : MonoBehaviour
             {
                 speed += -walkingSpeed;
                 rb2d.AddForce(Vector2.right * speed);
-
             }
             if (Input.GetKey(KeyCode.RightArrow))
             {
@@ -109,11 +101,20 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z) )
         {
-            tiempo_ataque = 0.0f;
-            Debug.Log("empieza ataque nuevo");
-            tiempo_ataque = 48.0f;
-            animator.SetFloat("tiempo_ataque", Mathf.Abs(tiempo_ataque));
+            
+            //tiempo_ataque = 0.0f;
+            sonido.clip = espada_aire;
+            sonido.Play();    
+           // Debug.Log("empieza ataque nuevo");
+            tiempo_ataque = 36.0f;
+            //animator.SetFloat("tiempo_ataque", Mathf.Abs(tiempo_ataque));
             ataque = true;           
+        }
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            GameObject nuevaKunai = Instantiate(KunaiPlayer, salidaKunai.transform.position, gameObject.transform.rotation);
+            
         }
 
         if (tiempo_ataque > 0.1f)
@@ -121,14 +122,12 @@ public class PlayerController : MonoBehaviour
             ataque = true;
             //animator.SetFloat("tiempo_ataque", Mathf.Abs(tiempo_ataque));            
             tiempo_ataque -= 1.0f;
-            Debug.Log("estan aqui 2 - tiempo: " + tiempo_ataque);
+            //Debug.Log("estan aqui 2 - tiempo: " + tiempo_ataque);
         }
         else
         {
             ataque = false;
         }
-
-
 
     }
 
@@ -142,17 +141,10 @@ public class PlayerController : MonoBehaviour
             if (ataque)
             {
                 //
+                sonido.Stop(); 
                 sonido.clip = espada_choque;
-                sonido.Play();
-                /*if (col.gameObject.tag == "kunai")
-                {
-                    col.gameObject.GetComponent<KunaiController>().reset();
-                }
-                if (col.gameObject.tag == "shuriken")
-                {
-                    col.gameObject.GetComponent<ShurikenController>().reset();
-                }
-                Debug.Log("sonido: " + sonido.clip);*/
+                sonido.Play();  
+                tiempo_ataque = 0.0f;              
                 ataque = false;
             }
             else
@@ -163,14 +155,10 @@ public class PlayerController : MonoBehaviour
                 
                 if (vitalidad < 0.1f) {
                     vitalidad = 0.0f;
-                    vidas.actualiza_vida(int.Parse(vitalidad + ""));
-                    //llamar a game over
-
-
+                    vidas.actualiza_vida(int.Parse(vitalidad + ""));                    
                     NotificationCenter.DefaultCenter().PostNotification(this, "PersonajeHaMuerto");
                     GameObject personaje = GameObject.Find("Player");
                     personaje.SetActive(false);
-
                 }
                 else
                 {

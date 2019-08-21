@@ -15,6 +15,7 @@ public class KunaiController : MonoBehaviour
     {
         rb2d = this.GetComponent<Rigidbody2D>();
         inicio = this.transform.position;
+        sonido = gameObject.GetComponent<AudioSource>();
         //sonido.clip = choque_armas;       
     }
 
@@ -36,16 +37,18 @@ public class KunaiController : MonoBehaviour
         }       
         if (col.gameObject.tag == "kunai_player")
         {
-            Debug.Log("CHOQUE DE KUNAIS");          
-            Destroy(gameObject);
-            Destroy(col.gameObject);
-            sonido.Play();
+            Debug.Log("CHOQUE DE KUNAIS");  
+            sonido.clip = choque_armas;  
+            sonido.Play();   
+            Destroy(col.gameObject);            
+            gameObject.GetComponent<Renderer>().enabled = false;
+                    
         }
        /* if (col.gameObject != null)
         {
             Destroy(gameObject);
         }*/
-    }
+    }    
 
     void OnBecameInvisible()
     {

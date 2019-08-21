@@ -16,6 +16,8 @@ public class ShurikenController : MonoBehaviour
     {
         rb2d = this.GetComponent<Rigidbody2D>();
         inicio = this.transform.position;
+        sonido = gameObject.GetComponent<AudioSource>();
+       
         //sonido.clip = choque_armas;
     }
 
@@ -48,10 +50,11 @@ public class ShurikenController : MonoBehaviour
         }
         if (col.gameObject.tag == "kunai_player")
         {
-            Debug.Log("CHOQUE shuriken - kunai");           
+            Debug.Log("CHOQUE shuriken - kunai");  
+            sonido.clip = choque_armas;  
+            sonido.Play();             
             Destroy(gameObject);
-            Destroy(col.gameObject);
-            sonido.Play();
+            Destroy(col.gameObject);            
         }
     }
 
